@@ -9,9 +9,12 @@ async function getAll()
 }
 
 function ShowAutions(response) {
+    splitDate(response);
     for (let i = 0; i < response.length; i++) {
         let innerContainer = document.createElement("div");
+        innerContainer.className="innerContainer";
         innerContainer.id = response[i].AuktionID;
+        
         let imgAuction = getImg();
         let titel = getTitel(response, i);
         let slutDatum = getSlutDatum(response, i);
@@ -48,4 +51,8 @@ function getPris(response, i) {
     pris.appendChild(prisText);
     return pris;
 }
-
+function splitDate(response){
+    let date= new Date();
+   // date.setDate(response[1].SlutDatum)
+    console.log(date);
+}
