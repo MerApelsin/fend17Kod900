@@ -32,8 +32,7 @@ function handleAuction(auctionResp)
 			//Texten som skall visas i taggen
   console.log(auctionResp);
 	//let text = JSON.stringify(auctionResp);
-  let text = auctionResp.Titel + " Beskrivning:"+auctionResp.Beskrivning;
-			//Skapa en textnode
+  let text = auctionResp.Titel + " Beskrivning: "+auctionResp.Beskrivning;
 	let textNode = document.createTextNode(text);
 
 			//Koppla texten till taggen och lägg ut på sidan
@@ -54,8 +53,6 @@ async function handleBids(id)
     myTextTag.appendChild(textNode);
     theDiv.appendChild(myTextTag);
   }
-
-  //let text = JSON.stringify(bidList);
 
   let bidButton = document.getElementById("bidButton");
   bidButton.addEventListener("click",placeBid)
