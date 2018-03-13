@@ -12,8 +12,38 @@ for (var i = 0; i < buttonsCount; i += 1) {
 
 function getAuctionId()
 {
+  let test = document.getElementsByTagName('div');
+  let aucArray = Array.from(test);
+  var arr = Array.prototype.slice.call( test );
+
+  console.log(test);
+  console.log(test.length);
+  console.log(arr);
+  //vill loopa igenom denna och sätta onclick func på varje
+  //console.log(test[0].id);
+
   document.getElementById("hej").addEventListener("click",meep);
-  auctionDetail(9);
+  //auctionDetail(9);
+
+  for(let a = 0; a < test.length; a++)
+  {
+    console.log("in for loop - divs");
+    console.log(test[a]);
+    test[a].onclick = function() { idFromDiv(test[a]); };
+  }
+}
+
+function idFromDiv(div)
+{
+  if(isOnlyDigits(div.id) == true)
+  {
+    let useId = parseInt(div.id);
+    auctionDetail(useId);
+  }
+}
+
+function isOnlyDigits(value) {
+    return /^-{0,1}\d+$/.test(value);
 }
 
 function meep(){ alert("clicked P");}
