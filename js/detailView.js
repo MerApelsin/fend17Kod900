@@ -13,6 +13,11 @@ for (var i = 0; i < buttonsCount; i += 1) {
 function getAuctionId()
 {
     document.getElementById("hej").addEventListener("click",meep);
+    let x = document.querySelectorAll(".innerContainer");
+    console.log(x);
+    let divchildren = document.getElementById("ikram").children;
+    console.log(divchildren);
+
   /*
   let test = document.querySelectorAll('div');
   let divchildren = document.getElementById("ikram").children;
