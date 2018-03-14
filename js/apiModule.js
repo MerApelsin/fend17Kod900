@@ -62,8 +62,20 @@ var apiModule = (function()
   			return data;
   		}
 
-  async function postBud(id,price,budid)
+  function postBud(content)
   {
+    fetch('http://nackowskis.azurewebsites.net/api/bud/',
+    {
+      method: 'post',
+      body: JSON.stringify(content),
+      headers:
+      {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+
+    })
+    /*
     fetch('http://nackowskis.azurewebsites.net/api/Bud/900/'+id, {
   	method: 'post',
   	body: JSON.stringify({
@@ -71,7 +83,7 @@ var apiModule = (function()
       Summa: price,
       AuktionsID: id
   	})
-  });
+  });*/
   }
 
   return {getAuctions:getAuctions,getSpecificAuct:getSpecificAuct,getBud:getBud,postBud:postBud};
