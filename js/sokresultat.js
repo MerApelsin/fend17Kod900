@@ -18,7 +18,7 @@ async function myFunction(){
   //console.log(textNode);
   createPtag.appendChild(textNode);
   searchResultList.appendChild(createPtag);
-
+  
 
 
 }
