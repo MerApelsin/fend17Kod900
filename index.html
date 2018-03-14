@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>Auktionssida</title>
-    <script type="text/javascript" src=js/apiModule.js defer></script>
+  <!--<script type="text/javascript" src=js/apiModule.js defer></script>-->
     <script src = "js/sokresultat.js" defer></script>
     <script type="text/javascript" src=js/test.js defer></script>
   </head>
   <body>
   <div id="ikram"></div>
   <div id="cecilia"></div>
-  <div id="stefan">
-    <input type="text" id = "myInput" onkeyup = "myFunction()" placeholder="Sök">
-    <input type="button" id = "myButton" onClick = "click()" value = "Sök">
-  </div>
+    <input type="text" id = "search" placeholder="Sök">
+    <input type="button" id = "searchButton" onClick = "myFunction()" value = "Sök">
+
+  <div id="searchResult"></div>
   </body>
 </html>
