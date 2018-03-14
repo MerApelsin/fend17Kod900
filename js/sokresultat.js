@@ -1,22 +1,35 @@
 async function myFunction(){
+let allNames = apiModule.getAuctions();
+
+let arr = [];
+
+
+
+
+
+
+
+
+
+/*
 
   let searchResultList = document.getElementById('searchResult');
 
   let searchValue = document.getElementById('search').value;
   let filter = searchValue.toUpperCase();
 
-  let allNames = await fetchData("http://nackowskis.azurewebsites.net/api/Auktion/900");
+  let allNames = apiModule.getAuctions();
 
   let createPtag = document.createElement('p')
 
   let leta = allNames.filter(name => name.Titel.toUpperCase().includes(filter));
-/*
+
   let textNode = document.createTextNode(JSON.stringify(leta));
 
 
   //console.log(textNode);
   createPtag.appendChild(textNode);
-  searchResultList.appendChild(createPtag);*/
+  searchResultList.appendChild(createPtag);
     console.log(leta[0].AuktionID)
 
     let v = leta[0].AuktionID
@@ -31,10 +44,6 @@ async function myFunction(){
 
 }
 
-async function fetchData(url){
-    let promise = await fetch(url);
-    let data = await promise.json();
-    return data;
-}
+
 
 /*myFunction();*/
