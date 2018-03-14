@@ -21,6 +21,42 @@ function handleAuction(auctionResp)
   handleBids(auctionResp.AuktionID);
 }
 
+async function searchDetail(id)
+{
+  let response = await apiModule.getSpecificAuct(id);
+  drawAuction(response);
+}
+
+function drawAuction(theAuction)
+{
+  let container=document.getElementById("showResult");
+  let innerContainer = document.createElement("div");
+  innerContainer.className="innerContainer";
+  innerContainer.id = theAuction.AuktionID;
+  innerContainer.onclick = function() { idFromDiv(innerContainer.id); }
+
+  let imgAuction = document.createElement("img");
+  imgAuction.setAttribute("src", "image/imageMissing.png");
+
+  let titel = document.createElement("p");
+  let titelText = document.createTextNode(theAuction.Titel);
+  titel.appendChild(titelText);
+
+  let slutDatum = document.createElement("p");
+  let slutDatumText = document.createTextNode(theAuction.SlutDatum);
+  slutDatum.appendChild(slutDatumText);
+
+  let pris = document.createElement("p");
+  let prisText = document.createTextNode("Utropspris: " + theAuction.Utropspris);
+  pris.appendChild(prisText);
+
+  innerContainer.appendChild(imgAuction);
+  innerContainer.appendChild(titel);
+  innerContainer.appendChild(slutDatum);
+  innerContainer.appendChild(pris);
+  container.appendChild(innerContainer);
+}
+
 /*
 function isAuctionFinished(response)
 {

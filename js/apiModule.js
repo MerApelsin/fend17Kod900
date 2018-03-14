@@ -66,14 +66,13 @@ var apiModule = (function()
   {
     fetch('http://nackowskis.azurewebsites.net/api/bud/',
     {
-      method: 'post',
+      method: 'POST',
       body: JSON.stringify(content),
       headers:
       {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       }
-
     })
     /*
     fetch('http://nackowskis.azurewebsites.net/api/Bud/900/'+id, {
