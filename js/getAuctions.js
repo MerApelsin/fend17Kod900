@@ -14,6 +14,7 @@ function ShowAutions(response) {
         let innerContainer = document.createElement("div");
         innerContainer.className="innerContainer";
         innerContainer.id = response[i].AuktionID;
+        innerContainer.onclick = function() { idFromDiv(innerContainer.id); }
         
         let imgAuction = getImg();
         let titel = getTitel(response, i);
@@ -26,6 +27,14 @@ function ShowAutions(response) {
         container.appendChild(innerContainer);
     }
 }
+let testEvent=document.getElementsByClassName("innerContainer");
+function hide(event){
+    // e.target refers to the clicked <li> element
+    // This is different than e.currentTarget which would refer to the parent <ul> in this context
+    alert(event.ta);
+  }
+  
+ 
 
 function getImg() {
     let imgAuction = document.createElement("img");
