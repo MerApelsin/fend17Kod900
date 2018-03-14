@@ -10,15 +10,23 @@ async function myFunction(){
   let createPtag = document.createElement('p')
 
   let leta = allNames.filter(name => name.Titel.toUpperCase().includes(filter));
-  console.log(JSON.stringify(leta));
-
+/*
   let textNode = document.createTextNode(JSON.stringify(leta));
 
 
   //console.log(textNode);
   createPtag.appendChild(textNode);
-  searchResultList.appendChild(createPtag);
-  
+  searchResultList.appendChild(createPtag);*/
+    console.log(leta[0].AuktionID)
+
+    let v = leta[0].AuktionID
+    sessionStorage.setItem('leta', v);
+    window.open('result.html','_self');
+    let x = sessionStorage.getItem('leta');
+    auctionDetail(x);
+    /*let showResult = document.getElementById('showResult');
+    let cl= container.cloneNode(true);
+    showResult.appendChild(cl);*/
 
 
 }
