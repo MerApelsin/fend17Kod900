@@ -9,6 +9,6 @@ showResult(paintings)
 function showResult(resultArray)
 {
   for(let i = 0; i < resultArray.length; i++){
-    searchDetail(resultArray[0]);
+    searchDetail(resultArray[i]);
   }
 }
