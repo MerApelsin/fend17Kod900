@@ -1,5 +1,8 @@
 let thisId = sessionStorage.getItem('id');
 auctionDetail(thisId);
+let infoDiv = document.getElementById("infoMsg");
+let msgText = document.getElementById("message");;
+infoDiv.style.display = "none";
 
 async function auctionDetail(id)
 {
@@ -135,6 +138,7 @@ async function handleBids(id)
 
 async function placeBid()
 {
+
   var auctionId = thisId;
   let bid = document.getElementById("bidValue").value;
   let bidList = await apiModule.getBud(auctionId);
@@ -151,23 +155,34 @@ async function placeBid()
     if(bid > currentHighestBid)
     {
       sendBid(auctionId, bid)
-      alert("Budet är lagt!");
+      infoDiv.style.display = "block";
+      msgText.innerHTML = "Budet har lagts!"
+      refreshBids(auctionId);
     }
     else
     {
-      alert("Var vänlig och lägg ett bud högre än det nuvarande högsta!");
+      infoDiv.style.display = "block";
+      msgText.innerHTML = "Var vänlig och lägg ett bud högre än det nuvarande högsta!";
     }
   }
   else if (bid != 0 || bid == null)
   {
     sendBid(auctionId, bid)
-    alert("Budet är lagt!");
+    infoDiv.style.display = "block";
+    msgText.innerHTML = "Budet har lagts!"
+    refreshBids(auctionId);
   }
 }
 
-async function refreshBids()
+async function refreshBids(auctionId)
 {
-
+  let budLista = document.getElementById("bidsList");
+  let bidList = await apiModule.getBud(auctionId);
+  let TextTag = document.createElement('LI');
+  let latestBid ="BudID: " + bidList[bidList.length-1].BudID +" Summa: " + bidList[bidList.length-1].Summa;
+  let theTextNode = document.createTextNode(latestBid);
+  TextTag.appendChild(theTextNode);
+  budLista.appendChild(TextTag);
 }
 
 function sendBid(id,amount)
