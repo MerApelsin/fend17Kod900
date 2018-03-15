@@ -12,15 +12,18 @@ function handleAuction(auctionResp)
 {
   let title = document.getElementById("auctionTitle");
   let beskrivning = document.getElementById("about");
-  let datum = document.getElementById("dates");
+  let startDate = document.getElementById("startDate");
+  let endDate = document.getElementById("endDate");
   let pris = document.getElementById("startPris");
   title.innerHTML = "Titel: " + auctionResp.Titel;
-  datum.innerHTML = "Start: " + auctionResp.StartDatum.slice(0,10) + "<br> Avslutas: " + auctionResp.SlutDatum.slice(11,19);
+  startDate.innerHTML = "Start datum: " + auctionResp.StartDatum.slice(0,10) + " Klockan: " + auctionResp.StartDatum.slice(11,19);
+  endDate.innerHTML = "Avslutas: " + auctionResp.SlutDatum.slice(0,10) + " Klockan: " + auctionResp.SlutDatum.slice(11,19);
   beskrivning.innerHTML = "Beskrivning: " + auctionResp.Beskrivning;
   pris.innerHTML = "Utropspris: " + auctionResp.Utropspris;
-  handleBids(auctionResp.AuktionID);
+  isAuctionFinished(auctionResp);
 }
 
+//Stefans
 async function searchDetail(id)
 {
   let response = await apiModule.getSpecificAuct(id);
@@ -56,10 +59,13 @@ function drawAuction(theAuction)
   innerContainer.appendChild(pris);
   container.appendChild(innerContainer);
 }
+//---End of Stefans
 
-/*
-function isAuctionFinished(response)
+
+async function isAuctionFinished(response)
 {
+  var bidSection = document.getElementById("bidSection");
+  bidSection.style.display = "none";
   let budLista = document.getElementById("bidsList");
   let dagensdatum = new Date();
   let auctDate = new Date(response.SlutDatum);
@@ -91,10 +97,12 @@ function isAuctionFinished(response)
   }
   else{ handleBids(response.AuktionID); }
 
-}*/
+}
 
 async function handleBids(id)
 {
+  var bidSection = document.getElementById("bidSection");
+  bidSection.style.display = "block";
   let budLista = document.getElementById("bidsList");
   let bidList = await apiModule.getBud(id);
 
@@ -127,26 +135,22 @@ async function handleBids(id)
 
 async function placeBid()
 {
-  let auctionId = thisId;
+  var auctionId = thisId;
   let bid = document.getElementById("bidValue").value;
   let bidList = await apiModule.getBud(auctionId);
   let values = [];
-  if(bidList.length > 0)
+  if(bidList.length > 0 && (bid != 0 || bid == null))
   {
     for(let a = 0; a < bidList.length; a++)
     {
       values.push(bidList[a].Summa);
     }
-    console.log(values);
     let currentHighestBid = values.reduce(function (p, v) {
       return ( p > v ? p : v );});
-    console.log(currentHighestBid);
 
     if(bid > currentHighestBid)
     {
-      let content = JSON.stringify({BudID: "1", Summa: bid, AuktionsID: auctionId});
-      console.log(content);
-      apiModule.postBud(content);
+      sendBid(auctionId, bid)
       alert("Budet är lagt!");
     }
     else
@@ -154,12 +158,21 @@ async function placeBid()
       alert("Var vänlig och lägg ett bud högre än det nuvarande högsta!");
     }
   }
-  else
+  else if (bid != 0 || bid == null)
   {
-
-    let content = JSON.stringify({BudID: "1", Summa: bid, AuktionsID: auctionId});
-    console.log(content);
-    apiModule.postBud(content);
+    sendBid(auctionId, bid)
     alert("Budet är lagt!");
   }
+}
+
+async function refreshBids()
+{
+
+}
+
+function sendBid(id,amount)
+{
+  var url = "http://nackowskis.azurewebsites.net/api/Bud/900/" + id;
+  var bid = {"BudID": 1, "Summa": amount, "AuktionID": id};
+  apiModule.postBud(url,bid);
 }
