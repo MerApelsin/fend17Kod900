@@ -7,7 +7,6 @@ infoDiv.style.display = "none";
 async function auctionDetail(id)
 {
   let response = await apiModule.getSpecificAuct(id);
-  console.log(response);
   handleAuction(response);
 }
 
@@ -35,7 +34,7 @@ async function searchDetail(id)
 
 function drawAuction(theAuction)
 {
-  let container=document.getElementById("showResult");
+  let container = document.getElementById("showResult");
   let innerContainer = document.createElement("div");
   innerContainer.className="innerContainer";
   innerContainer.id = theAuction.AuktionID;

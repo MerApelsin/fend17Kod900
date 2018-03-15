@@ -1,4 +1,6 @@
 async function myFunction(){
+
+
 let allNames = await apiModule.getAuctions();
 //console.log(allNames);
 let arr = [];
@@ -8,12 +10,22 @@ let searchValue = document.getElementById('search').value;
 for(let i = 0; i < allNames.length; i++){
   let tempString = allNames[i].Titel;
    if(tempString.toUpperCase().includes(searchValue.toUpperCase()))
-  {
+   {
     //  console.log(allNames[i].AuktionID);
-      arr.push(allNames[i].AuktionID);
+      let tempAukt = createAuctionObj(allNames[i]);
+      arr.push(tempAukt);
     }
+    console.log(arr);
     localStorage.setItem('aukt', JSON.stringify(arr));
     window.open('result.html','_self');
+}
+
+function createAuctionObj(aukt)
+{
+  var thisAuktion = {AuktionID: aukt.AuktionID, Titel: aukt.Titel, Beskrivning: aukt.Beskrivning,
+    StartDatum: aukt.StartDatum, SlutDatum: aukt.SlutDatum,
+    Gruppkod: aukt.Gruppkod, Utropspris: aukt.Utropspris}
+    return thisAuktion;
 }
 
 
