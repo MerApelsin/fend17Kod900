@@ -13,12 +13,8 @@ for(let i = 0; i < allNames.length; i++){
       arr.push(allNames[i].AuktionID);
     }
     localStorage.setItem('aukt', JSON.stringify(arr));
-    window.open('result.html','_self');
+    window.open('sort.html','_self');
 }
-
-
-
-
 
 
 
@@ -60,3 +56,34 @@ for(let i = 0; i < allNames.length; i++){
 
 
 /*myFunction();*/
+
+
+let sortForm = document.getElementById("sortForm");
+sortForm.addEventListener('click', sortF);
+async function sortF(e){ 
+  let auctions = await apiModule.getAuctions();
+  if(e.target.value=="pris"){
+    sorteraEfterPris(auctions);
+  }
+  else if(e.target.value=="datum"){
+    sorteraEfterDatum(auctions);
+  }
+}
+function sorteraEfterPris(auctions){
+  auctions.sort((a,b)=>{
+    return (a.Utropspris - b.Utropspris)
+  });
+  getAuctionsId(auctions);
+}
+
+function sorteraEfterDatum(auctions){
+  alert("datum sortering");
+}
+function getAuctionsId(auctions){
+  let arrId=[];
+  for(let i=0; i<auctions.length; i++){
+    arrId.push(auctions[i].AuktionID);
+  }
+  localStorage.setItem('sortPris', JSON.stringify(arrId));
+  window.open('sort.html','_self');
+}
