@@ -1,7 +1,20 @@
 async function myFunction(){
-let allNames = apiModule.getAuctions();
-
+let allNames = await apiModule.getAuctions();
+//console.log(allNames);
 let arr = [];
+let searchValue = document.getElementById('search').value;
+//console.log(searchValue);
+
+for(let i = 0; i < allNames.length; i++){
+  let tempString = allNames[i].Titel;
+   if(tempString.localeCompare(searchValue) != -1)
+  {
+    //  console.log(allNames[i].AuktionID);
+      arr.push(allNames[i].AuktionID);
+    }
+    localStorage.setItem('aukt', JSON.stringify(arr));
+    window.open('result.html','_self');
+}
 
 
 
