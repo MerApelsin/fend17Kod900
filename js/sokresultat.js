@@ -8,7 +8,7 @@ let searchValue = document.getElementById('search').value;
 for(let i = 0; i < allNames.length; i++){
   let tempString = allNames[i].Titel;
    if(tempString.toUpperCase().includes(searchValue.toUpperCase()))
-  {
+    {
     //  console.log(allNames[i].AuktionID);
       arr.push(allNames[i].AuktionID);
     }
