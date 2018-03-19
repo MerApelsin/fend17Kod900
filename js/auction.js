@@ -69,10 +69,12 @@ async function isAuctionFinished(response)
   var bidSection = document.getElementById("bidSection");
   bidSection.style.display = "none";
   let budLista = document.getElementById("bidsList");
+  let values = [];
   let dagensdatum = new Date();
   let auctDate = new Date(response.SlutDatum);
   if(dagensdatum > auctDate)
   {
+    let TextTag = document.createElement('LI');
     let bidList = await apiModule.getBud(response.AuktionID);
     if(bidList.length > 0)
     {
