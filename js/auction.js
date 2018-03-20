@@ -48,11 +48,11 @@ function drawAuction(theAuction)
   titel.appendChild(titelText);
 
   let slutDatum = document.createElement("p");
-  let slutDatumText = document.createTextNode(theAuction.SlutDatum);
+  let slutDatumText = document.createTextNode("Avslutas: " + theAuction.SlutDatum.slice(0,10) + " Klockan: " + theAuction.SlutDatum.slice(11,19));
   slutDatum.appendChild(slutDatumText);
 
   let pris = document.createElement("p");
-  let prisText = document.createTextNode("Utropspris: " + theAuction.Utropspris);
+  let prisText = document.createTextNode("Utropspris: " + theAuction.Utropspris + " kr");
   pris.appendChild(prisText);
 
   innerContainer.appendChild(imgAuction);
