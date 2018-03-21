@@ -1,13 +1,46 @@
+body {
+    background: #e7ebed;
+    font-family: 'Futura', Arial, sans-serif;
+   
+}
+
 img{
     width: 200px;
     height: 200px;
+       
 }
+
+
 #ikram{
     display:grid;
-    grid-template-columns: 200px 200px 200px;
-    grid-column-gap: 40px;
+    grid-template-columns:repeat(2, 1fr);
+    grid-gap: 20px;
+    
+ 
+
 }
 .innerContainer{
-    width: 200px;
-    margin-left: 100px;
+    background: #f1f6f1;
+    display: grid;
+    grid-template-columns:repeat(4, 1fr);
+    border:#333 2px solid;
+    text-align: center;
+    padding: 1em;
+    grid-gap: 1em;
+  }
+
+p {
+    background: white;
+    color: #d46a6a;
+    border: #333 1px solid;
+    padding: 1em
+    
+}
+
+
+h1{
+    background: white;
+    text-align: center;
+    padding: 5px;
+    
 }
