@@ -1,10 +1,12 @@
 let thisId = sessionStorage.getItem('id');
 auctionDetail(thisId);
+let infoDiv = document.getElementById("infoMsg");
+let msgText = document.getElementById("message");;
+infoDiv.style.display = "none";
 
 async function auctionDetail(id)
 {
   let response = await apiModule.getSpecificAuct(id);
-  console.log(response);
   handleAuction(response);
 }
 
@@ -32,7 +34,7 @@ async function searchDetail(id)
 
 function drawAuction(theAuction)
 {
-  let container=document.getElementById("showResult");
+  let container = document.getElementById("showResult");
   let innerContainer = document.createElement("div");
   innerContainer.className="innerContainer";
   innerContainer.id = theAuction.AuktionID;
@@ -46,11 +48,11 @@ function drawAuction(theAuction)
   titel.appendChild(titelText);
 
   let slutDatum = document.createElement("p");
-  let slutDatumText = document.createTextNode(theAuction.SlutDatum);
+  let slutDatumText = document.createTextNode("Avslutas: " + theAuction.SlutDatum.slice(0,10) + " Klockan: " + theAuction.SlutDatum.slice(11,19));
   slutDatum.appendChild(slutDatumText);
 
   let pris = document.createElement("p");
-  let prisText = document.createTextNode("Utropspris: " + theAuction.Utropspris);
+  let prisText = document.createTextNode("Utropspris: " + theAuction.Utropspris + " kr");
   pris.appendChild(prisText);
 
   innerContainer.appendChild(imgAuction);
@@ -67,10 +69,12 @@ async function isAuctionFinished(response)
   var bidSection = document.getElementById("bidSection");
   bidSection.style.display = "none";
   let budLista = document.getElementById("bidsList");
+  let values = [];
   let dagensdatum = new Date();
   let auctDate = new Date(response.SlutDatum);
   if(dagensdatum > auctDate)
   {
+    let TextTag = document.createElement('LI');
     let bidList = await apiModule.getBud(response.AuktionID);
     if(bidList.length > 0)
     {
@@ -135,6 +139,7 @@ async function handleBids(id)
 
 async function placeBid()
 {
+
   var auctionId = thisId;
   let bid = document.getElementById("bidValue").value;
   let bidList = await apiModule.getBud(auctionId);
@@ -151,23 +156,34 @@ async function placeBid()
     if(bid > currentHighestBid)
     {
       sendBid(auctionId, bid)
-      alert("Budet är lagt!");
+      infoDiv.style.display = "block";
+      msgText.innerHTML = "Budet har lagts!"
+      refreshBids(auctionId);
     }
     else
     {
-      alert("Var vänlig och lägg ett bud högre än det nuvarande högsta!");
+      infoDiv.style.display = "block";
+      msgText.innerHTML = "Var vänlig och lägg ett bud högre än det nuvarande högsta!";
     }
   }
   else if (bid != 0 || bid == null)
   {
     sendBid(auctionId, bid)
-    alert("Budet är lagt!");
+    infoDiv.style.display = "block";
+    msgText.innerHTML = "Budet har lagts!"
+    refreshBids(auctionId);
   }
 }
 
-async function refreshBids()
+async function refreshBids(auctionId)
 {
-
+  let budLista = document.getElementById("bidsList");
+  let bidList = await apiModule.getBud(auctionId);
+  let TextTag = document.createElement('LI');
+  let latestBid ="BudID: " + bidList[bidList.length-1].BudID +" Summa: " + bidList[bidList.length-1].Summa;
+  let theTextNode = document.createTextNode(latestBid);
+  TextTag.appendChild(theTextNode);
+  budLista.appendChild(TextTag);
 }
 
 function sendBid(id,amount)

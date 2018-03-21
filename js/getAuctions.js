@@ -9,8 +9,9 @@ async function getAll()
 }
 
 function ShowAutions(response) {
-    splitDate(response);
+   
     for (let i = 0; i < response.length; i++) {
+        if(new Date(response[i].SlutDatum) > new Date()){                    
         let innerContainer = document.createElement("div");
         innerContainer.className="innerContainer";
         innerContainer.id = response[i].AuktionID;
@@ -25,12 +26,12 @@ function ShowAutions(response) {
         innerContainer.appendChild(slutDatum);
         innerContainer.appendChild(pris);
         container.appendChild(innerContainer);
+        }
     }
 }
 let testEvent=document.getElementsByClassName("innerContainer");
 function hide(event){
-    // e.target refers to the clicked <li> element
-    // This is different than e.currentTarget which would refer to the parent <ul> in this context
+    
     alert(event.ta);
   }
   
@@ -50,7 +51,7 @@ function getTitel(response, i) {
 }
 function getSlutDatum(response, i) {
     let slutDatum = document.createElement("p");
-    let slutDatumText = document.createTextNode(response[i].SlutDatum);
+    let slutDatumText = document.createTextNode("Avslutas: " + response[i].SlutDatum.slice(0,10) + " Klockan: " + response[i].SlutDatum.slice(11,19));
     slutDatum.appendChild(slutDatumText);
     return slutDatum;
 }
@@ -60,8 +61,4 @@ function getPris(response, i) {
     pris.appendChild(prisText);
     return pris;
 }
-function splitDate(response){
-    let date= new Date();
-   // date.setDate(response[1].SlutDatum)
-    console.log(date);
-}
+
