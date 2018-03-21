@@ -5,28 +5,37 @@
     <title>Auktionsdetaljer</title>
     <script type="text/javascript" src=js/apiModule.js defer></script>
     <script type="text/javascript" src=js/auction.js defer></script>
+    <link rel="stylesheet" href="css/style2.css">
   </head>
   <body>
-    <a href="index.html">Tillbaka till hem</a>
-    <div id="auction">
+
+    <a href="index.html">Gå Tillbaka</a>
+    
+      <div class="wrapper">
+      <div id="auction">
       <h3 id="auctionTitle">Titel</h3><br>
       <img src="image/imageMissing.png" alt="image missing">
       <p id="about">Beskrivning</p><br>
       <p id="startDate">startdatum</p><br>
       <p id="endDate">slutdatum</p><br>
-      <p id="startPris">utropspris</p>
-      <p>Bud:</p>
-      <ul id="bidsList">
+      </div>
+      <div class="auktion">
+          <p id="startPris">utropspris</p>
+        
+          <p>Bud:</p>
+        <ul id="bidsList"></ul>
+        
 
-      </ul><br>
-      <div id="infoMsg">
-        <h5 id="message">Meep</h5>
+        <div id="infoMsg">
+          <h5 id="message">Meep</h5>
+        </div>
+        <div id=bidSection>
+          <h2>Lägg ett bud:</h2>
+          <input type="number" name="bid" id="bidValue"></input>
+          <button type="button" id=bidButton>Lägg ditt bud</button>
+        </div>
       </div>
-      <div id=bidSection>
-        <p>Lägg ett bud:</p><br>
-        <input type="number" name="bid" id="bidValue"></input>
-        <button type="button" id=bidButton>Lägg ditt bud</button>
-      </div>
-    </div>
+    </div> 
+    
   </body>
 </html>

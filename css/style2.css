@@ -1,0 +1,85 @@
+body {
+    background:#ececec;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+}
+
+.auktion{
+    display:grid;
+    grid-template-rows: 1fr
+    padding: 1em;
+    grid-column-gap: 2em;
+    
+}
+
+.wrapper{
+    display:grid;
+    border: black 2px solid;
+    padding: 1em;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 1em;
+
+}
+
+img{
+    
+    height: 400px;
+    width: 400px;
+}
+
+p{
+    background: #f8f8f8;
+    color: #222527;
+    border: black 1px solid;
+    padding: 1em;
+}
+
+
+h3{
+    border: black 2px solid;
+    background: #feb2dd;
+    color: #222527;
+    padding: 20px;
+    
+}
+
+h2{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+}
+
+#bidSection {
+    background-color: #feb2dd;
+    border: black 1px solid;
+    padding: 1em;
+    
+}
+
+#bidButton {
+    padding: 10px 15px;
+    color: black;
+    border: black 1px solid;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+}
+
+#bidValue {
+    height: 25px;
+    width: 100%;
+    border: black 2px solid;
+}
+
+#bidsList{
+    background: #f8f8f8;
+    border: black 1px solid;
+}
+
+a{
+    display: grid;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px 15px;
+    font-size: 20px;
+    color: black;
+}
+
