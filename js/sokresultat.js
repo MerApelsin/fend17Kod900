@@ -2,24 +2,23 @@ async function myFunction(){
 
 
 let allNames = await apiModule.getAuctions();
-//console.log(allNames);
+
 let arr = [];
 let searchValue = document.getElementById('search').value;
-//console.log(searchValue);
+
 
 for(let i = 0; i < allNames.length; i++){
   let tempString = allNames[i].Titel;
    if(tempString.toUpperCase().includes(searchValue.toUpperCase()))
-<<<<<<< HEAD
+
     {
-=======
+
    {
->>>>>>> Search_and_result
-    //  console.log(allNames[i].AuktionID);
+
       let tempAukt = createAuctionObj(allNames[i]);
       arr.push(tempAukt);
     }
-    console.log(arr);
+    
     localStorage.setItem('aukt', JSON.stringify(arr));
     window.open('result.html','_self');
 }
