@@ -49,9 +49,12 @@ h2{
 }
 
 #bidSection {
-    background-color: #161322;;
+    background-color: #161322;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-style: italic;
     border: black 1px solid;
-    color: rgb(168, 227, 238);
+    color: white;
     padding: 1em;
     
 }
